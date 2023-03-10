@@ -16,9 +16,9 @@ export class Review {
   @Column()
   reviewText: string;
 
-  @ManyToOne(() => User, (user) => user.reviews)
+  @ManyToOne(() => User, (user) => user)
   user: Relation<User>;
   
-  @ManyToOne(() => Book, (book) => book.bookId)
-  book: Relation(Book)
+  @ManyToOne(() => Book, (book) => book)
+  book: Relation<Book>;
 }

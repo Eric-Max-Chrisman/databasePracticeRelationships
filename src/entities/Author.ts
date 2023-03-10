@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, Relation } from 'typeorm';
-import { Review };
+import { Book } from './Book';
 
 @Entity()
-export class Book {
+export class Author {
   @PrimaryGeneratedColumn('uuid')
   authorId: string;
 
@@ -12,6 +12,6 @@ export class Book {
   @Column({ unique: false, default: 'unknown' })
   countryOrgin: string;
 
-  @ManyToMany(() => Book, (book) => book.bookId, { cascade: true })
-  books: Relation<Book>[];
+  @ManyToMany(() => Book, (book) => book, { cascade: true })
+  book: Relation<Book>[];
 }

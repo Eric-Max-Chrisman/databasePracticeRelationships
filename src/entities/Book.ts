@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Relation } from 'typeorm';
-import { Review };
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, Relation } from 'typeorm';
+import { Review } from './Review';
+import { Author } from './Author';
 
 @Entity()
 export class Book {
@@ -10,14 +11,14 @@ export class Book {
   bookTitle: string;
 
   @Column({ unique: false, nullable: true })
-  yearPublished: int;
+  yearPublished: number;
 
   @Column({ default: false })
   publicDomain: boolean;
 
-  @OneToMany(() => Review, (review) => review.reviewId, { cascade: true })
-  reviews: Relation<Review>[];
+  @OneToMany(() => Review, (review) => review, { cascade: true })
+  review: Relation<Review>[];
   
-  @ManyToMany(() => Author, (author) => author.author.Id, { cascade: true })
-  authors: Relation<Author>[];
+  @ManyToMany(() => Author, (author) => author, { cascade: true })
+  author: Relation<Author>[];
 }
