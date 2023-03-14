@@ -8,10 +8,10 @@ export class Author {
 
   @Column({ unique: false })
   authorName: string;
-  
+
   @Column({ unique: false, default: 'unknown' })
   countryOrgin: string;
 
-  @ManyToMany(() => Book, (book) => book.Authors, { cascade: 'insert', 'update' })
+  @ManyToMany(() => Book, (book) => book.authors, { cascade: ['insert', 'update'] })
   books: Relation<Book>[];
 }

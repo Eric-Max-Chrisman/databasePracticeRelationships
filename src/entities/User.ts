@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Relation } from 'typeorm';
-import { Review } from "./Review";
+import { Review } from './Review';
 
 @Entity()
 export class User {
@@ -18,6 +18,6 @@ export class User {
   @Column({ default: 0 })
   profileViews: number;
 
-  @OneToMany(() => Review, (review) => review, { cascade: true })
-  review: Relation<Review>[];
+  @OneToMany(() => Review, (review) => review, { cascade: ['insert', 'update'] })
+  reviews: Relation<Review>[];
 }

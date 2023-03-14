@@ -1,6 +1,4 @@
-import { 
-    Entity, PrimaryGeneratedColumn, Column, 
-    Check, ManyToOne, Relation } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Check, ManyToOne, Relation } from 'typeorm';
 import { User } from './User';
 import { Book } from './Book';
 
@@ -18,7 +16,7 @@ export class Review {
 
   @ManyToOne(() => User, (user) => user)
   user: Relation<User>;
-  
-  @ManyToOne(() => Book, (book) => book)
+
+  @ManyToOne(() => Book, (book) => book.reviews)
   book: Relation<Book>;
 }

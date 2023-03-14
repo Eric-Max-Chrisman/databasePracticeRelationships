@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, Relation } from 'typeorm';
+import { Entity, JoinTable, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, Relation } from 'typeorm';
 import { Review } from './Review';
 import { Author } from './Author';
 
@@ -16,9 +16,10 @@ export class Book {
   @Column({ default: false })
   publicDomain: boolean;
 
-  @OneToMany(() => Review, (review) => review.book, { cascade: 'insert', 'update' })
+  @OneToMany(() => Review, (review) => review.book, { cascade: ['insert', 'update'] })
   reviews: Relation<Review>[];
-  
-  @ManyToMany(() => Author, (author) => author.books, { cascade: 'insert', 'update' })
+
+  @ManyToMany(() => Author, (author) => author.books, { cascade: ['insert', 'update'] })
+  @JoinTable()
   authors: Relation<Author>[];
 }
