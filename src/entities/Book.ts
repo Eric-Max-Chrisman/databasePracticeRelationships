@@ -16,9 +16,9 @@ export class Book {
   @Column({ default: false })
   publicDomain: boolean;
 
-  @OneToMany(() => Review, (review) => review, { cascade: true })
+  @OneToMany(() => Review, (review) => review.book, { cascade: 'insert', 'update' })
   review: Relation<Review>[];
   
-  @ManyToMany(() => Author, (author) => author, { cascade: true })
+  @ManyToMany(() => Author, (author) => author.book, { cascade: 'insert', 'update' })
   author: Relation<Author>[];
 }
