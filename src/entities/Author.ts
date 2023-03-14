@@ -12,6 +12,6 @@ export class Author {
   @Column({ unique: false, default: 'unknown' })
   countryOrgin: string;
 
-  @ManyToMany(() => Book, (book) => book, { cascade: 'insert', 'update' })
-  book: Relation<Book>[];
+  @ManyToMany(() => Book, (book) => book.Authors, { cascade: 'insert', 'update' })
+  books: Relation<Book>[];
 }
